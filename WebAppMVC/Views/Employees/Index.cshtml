@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebAppMVC.Models.EF.Employee>
+﻿@model IEnumerable<WebAppMVC.Models.ViewModel.Employees.VWEmployeeList>
 
 @{
     ViewData["Title"] = "Index";
@@ -7,62 +7,47 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-warning">Create New</a>
 </p>
-<table class="table">
+<div class="h-100 p-3 text-white bg-success rounded-3 mb-4">
+    <h2>員工基本資料</h2>
+</div>
+<table class="table table-bordered table-striped table-hover align-middle" >
     <thead>
         <tr>
             <th>
+                <i class="fade fa-bars"></i>
                 @Html.DisplayNameFor(model => model.LastName)
             </th>
             <th>
+                <i class="fade fa-user"></i>
                 @Html.DisplayNameFor(model => model.FirstName)
             </th>
             <th>
+                <i class="fade fa-bars"></i>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
+                <i class="fade fa-bars"></i>
                 @Html.DisplayNameFor(model => model.TitleOfCourtesy)
             </th>
             <th>
+                <i class="fade fa-bars"></i>
                 @Html.DisplayNameFor(model => model.BirthDate)
             </th>
             <th>
+                <i class="fade fa-bars"></i>
                 @Html.DisplayNameFor(model => model.HireDate)
             </th>
             <th>
+                <i class="fade fa-bars"></i>
                 @Html.DisplayNameFor(model => model.Address)
             </th>
             <th>
+                <i class="fade fa-bars"></i>
                 @Html.DisplayNameFor(model => model.City)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Region)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PostalCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Country)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HomePhone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Extension)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Photo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Notes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhotoPath)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReportsToNavigation)
-            </th>
+           
             <th></th>
         </tr>
     </thead>
@@ -93,39 +78,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.City)
             </td>
+           
             <td>
-                @Html.DisplayFor(modelItem => item.Region)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostalCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Country)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HomePhone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Extension)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Photo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Notes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhotoPath)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReportsToNavigation.EmployeeId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.EmployeeId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EmployeeId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EmployeeId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.EmployeeId" class="btn btn-primary">編輯</a> |
+                <a asp-action="Details" asp-route-id="@item.EmployeeId" class="btn btn-success">明細</a> |
+                <a asp-action="Delete" asp-route-id="@item.EmployeeId" class="btn btn-danger">刪除</a>
             </td>
         </tr>
 }
+       @* @await Html.PartialAsync("_TestPartialView",Model)*@
     </tbody>
 </table>

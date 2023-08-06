@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebAppMVC.Models.EF;
+using WebAppMVC.Models.ViewModel.Employees;
 
 namespace WebAppMVC.Controllers
 {
@@ -21,8 +22,23 @@ namespace WebAppMVC.Controllers
         // GET: Employees
         public async Task<IActionResult> Index()
         {
-            var northwindContext = _context.Employees.Include(e => e.ReportsToNavigation);
-            return View(await northwindContext.ToListAsync());
+            var employees = _context.Employees.Select
+                (
+                    x=>new VWEmployeeList
+                    {
+                       EmployeeId = x.EmployeeId,
+                       Address = x.Address, 
+                       City= x.City,    
+                       BirthDate = x.BirthDate, 
+                       FirstName = x.FirstName, 
+                       LastName = x.LastName,
+                       HireDate = x.HireDate,   
+                       Title = x.Title, 
+                       TitleOfCourtesy = x.TitleOfCourtesy,
+                    }
+                ).ToListAsync();
+            
+            return View(await employees);
         }
 
         // GET: Employees/Details/5
