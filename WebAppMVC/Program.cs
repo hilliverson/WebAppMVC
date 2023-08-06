@@ -1,9 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using WebAppMVC.Data;
+using WebAppMVC.Models.EF;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<FriendContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("FriendContext") ?? throw new InvalidOperationException("Connection string 'FriendContext' not found.")));
+
+builder.Services.AddDbContext<NorthwindContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("NorthwindContext") ?? throw new InvalidOperationException("Connection string 'FriendContext' not found.")));
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
