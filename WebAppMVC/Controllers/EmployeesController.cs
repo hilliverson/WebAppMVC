@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -178,6 +179,29 @@ namespace WebAppMVC.Controllers
         private bool EmployeeExists(int id)
         {
           return (_context.Employees?.Any(e => e.EmployeeId == id)).GetValueOrDefault();
+        }
+
+
+        public IActionResult InputTagHelper()
+        {
+            return View();  
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult InputTagHelper([Bind("eMail,password,confirmPassword")]RegisterEmployee employee)
+        {
+            if(ModelState.IsValid)
+            {
+                TempData["eMail"] = employee.eMail;
+                TempData["password"] = employee.password;
+                return RedirectToAction("RegisterResult");
+            }
+            return View(employee);  
+        }
+
+        public IActionResult RegisterResult()
+        {
+            return View();
         }
     }
 }

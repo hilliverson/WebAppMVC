@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "RegisterResult";
+    //referer header含有原始請求端網址
+    string referer = Context.Request.Headers["referer"].ToString();
+}
+
+<div class="h-100 p-3 text-white bg-dark rounded-3 mb-4">
+    <h1>RegisterResult</h1>
+</div>
+
+Email : @TempData["Email"]
+<br />
+Password : @TempData["Password"]
+
+<br />
+<a href="@referer" class="btn btn-primary">回上一頁</a>
