@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebAppMVC.Data;
 using WebAppMVC.Models;
+using WebAppMVC.Models.ViewModel.Employees;
 
 namespace WebAppMVC.Controllers
 {
@@ -22,9 +23,18 @@ namespace WebAppMVC.Controllers
         // GET: Friends
         public async Task<IActionResult> Index()
         {
-              return _context.Friends != null ? 
-                          View(await _context.Friends.ToListAsync()) :
-                          Problem("Entity set 'FriendContext.Friends'  is null.");
+            List<SiteInfo> siteInfos = new List<SiteInfo>
+              {
+                  new SiteInfo{ siteId=1, siteName="新案件", cards=new List<Card>
+                  {
+                      new Card{ }
+                  } },
+                  new SiteInfo{ siteId=2, siteName="報價簽核" },
+                  new SiteInfo{ siteId=3, siteName="Erp開單" },
+                  new SiteInfo{ siteId=4, siteName="齊料" },
+                  new SiteInfo{ siteId=5, siteName="入庫"}
+              };
+            return View(siteInfos); 
         }
 
         // GET: Friends/Details/5
